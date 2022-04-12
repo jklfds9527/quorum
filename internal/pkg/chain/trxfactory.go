@@ -2,25 +2,26 @@ package chain
 
 import (
 	"encoding/binary"
-	"encoding/hex"
+	//"encoding/hex"
 	"errors"
-	"fmt"
-	"time"
+	//"fmt"
+	//"time"
 
 	"github.com/rumsystem/quorum/internal/pkg/nodectx"
+	rumchaindata "github.com/rumsystem/rumchaindata/pkg/data"
 	quorumpb "github.com/rumsystem/rumchaindata/pkg/pb"
 	"google.golang.org/protobuf/proto"
 
-	guuid "github.com/google/uuid"
+	//guuid "github.com/google/uuid"
 	p2pcrypto "github.com/libp2p/go-libp2p-core/crypto"
 	localcrypto "github.com/rumsystem/keystore/pkg/crypto"
 )
 
-const (
-	Hours = 0
-	Mins  = 0
-	Sec   = 30
-)
+//const (
+//	Hours = 0
+//	Mins  = 0
+//	Sec   = 30
+//)
 
 const OBJECT_SIZE_LIMIT = 200 * 1024 //(200Kb)
 
@@ -36,75 +37,12 @@ func (factory *TrxFactory) Init(groupItem *quorumpb.GroupItem, nodename string) 
 	factory.nodename = nodename
 }
 
-func (factory *TrxFactory) CreateTrxWithoutSign(msgType quorumpb.TrxType, data []byte, encryptto ...[]string) (*quorumpb.Trx, []byte, error) {
-	var trx quorumpb.Trx
-
-	trxId := guuid.New()
-	trx.TrxId = trxId.String()
-	trx.Type = msgType
-	trx.GroupId = factory.groupItem.GroupId
-	trx.SenderPubkey = factory.groupItem.UserSignPubkey
-	nonce, err := nodectx.GetDbMgr().GetNextNouce(factory.groupId, factory.nodename)
-	if err != nil {
-		return &trx, []byte(""), err
-	}
-
-	trx.Nonce = int64(nonce)
-
-	var encryptdData []byte
-	if msgType == quorumpb.TrxType_POST && factory.groupItem.EncryptType == quorumpb.GroupEncryptType_PRIVATE {
-		//for post, private group, encrypted by age for all announced group users
-		if len(encryptto) == 1 {
-			var err error
-			ks := localcrypto.GetKeystore()
-			if len(encryptto[0]) == 0 {
-				return &trx, []byte(""), fmt.Errorf("must have encrypt pubkeys for private group %s", factory.groupItem.GroupId)
-			}
-			encryptdData, err = ks.EncryptTo(encryptto[0], data)
-			if err != nil {
-				return &trx, []byte(""), err
-			}
-
-		} else {
-			return &trx, []byte(""), fmt.Errorf("must have encrypt pubkeys for private group %s", factory.groupItem.GroupId)
-		}
-
-	} else {
-		var err error
-		ciperKey, err := hex.DecodeString(factory.groupItem.CipherKey)
-		if err != nil {
-			return &trx, []byte(""), err
-		}
-		encryptdData, err = localcrypto.AesEncrypt(data, ciperKey)
-		if err != nil {
-			return &trx, []byte(""), err
-		}
-	}
-
-	trx.Data = encryptdData
-	trx.Version = nodectx.GetNodeCtx().Version
-
-	updateTrxTimeLimit(&trx)
-
-	bytes, err := proto.Marshal(&trx)
-	if err != nil {
-		return &trx, []byte(""), err
-	}
-	hashed := localcrypto.Hash(bytes)
-	return &trx, hashed, nil
-}
-
-// set TimeStamp and Expired for trx
-func updateTrxTimeLimit(trx *quorumpb.Trx) {
-	trx.TimeStamp = time.Now().UnixNano()
-	timein := time.Now().Local().Add(time.Hour*time.Duration(Hours) +
-		time.Minute*time.Duration(Mins) +
-		time.Second*time.Duration(Sec))
-	trx.Expired = timein.UnixNano()
-}
-
 func (factory *TrxFactory) CreateTrx(msgType quorumpb.TrxType, data []byte, encryptto ...[]string) (*quorumpb.Trx, error) {
-	trx, hashed, err := factory.CreateTrxWithoutSign(msgType, data, encryptto...)
+	nonce, err := nodectx.GetDbMgr().GetNextNouce(factory.groupItem.GroupId, factory.nodename)
+	if err != nil {
+		return nil, err
+	}
+	trx, hashed, err := rumchaindata.CreateTrxWithoutSign(factory.nodename, nodectx.GetNodeCtx().Version, factory.groupItem, msgType, int64(nonce), data, encryptto...)
 	if err != nil {
 		return trx, err
 	}

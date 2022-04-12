@@ -18,6 +18,7 @@ replace github.com/libp2p/go-libp2p => github.com/libp2p/go-libp2p v0.18.0
 //replace github.com/ipfs/go-ds-badger2 => ../go-ds-badger2
 //replace github.com/libp2p/go-libp2p-peerstore => ../go-libp2p-peerstore
 //replace github.com/libp2p/go-libp2p-pubsub => ../go-libp2p-pubsub
+replace github.com/rumsystem/rumchaindata => ../rumchaindata
 
 require (
 	code.rocketnine.space/tslocum/cbind v0.1.5
@@ -56,11 +57,12 @@ require (
 	github.com/otiai10/copy v1.7.0
 	github.com/phayes/freeport v0.0.0-20220201140144-74d24b5ae9f5
 	github.com/rumsystem/keystore v0.0.0-20220411174806-f3f15814a8f5
+	github.com/rumsystem/rumchaindata v0.0.0-20220412162901-e0a1de74b2fd
 	github.com/spf13/viper v1.10.1
 	github.com/swaggo/echo-swagger v1.1.0
 	github.com/swaggo/swag v1.7.0
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211
-	google.golang.org/protobuf v1.27.1
+	google.golang.org/protobuf v1.28.0
 )
 
 require (
@@ -198,7 +200,6 @@ require (
 	github.com/raulk/go-watchdog v1.2.0 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/rjeczalik/notify v0.9.1 // indirect
-	github.com/rumsystem/rumchaindata v0.0.0-20220412162901-e0a1de74b2fd // indirect
 	github.com/smartystreets/assertions v1.0.1 // indirect
 	github.com/spacemonkeygo/spacelog v0.0.0-20180420211403-2296661a0572 // indirect
 	github.com/spf13/afero v1.6.0 // indirect
