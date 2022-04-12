@@ -6,7 +6,7 @@ import (
 	localCrypto "github.com/rumsystem/keystore/pkg/crypto"
 	"github.com/rumsystem/quorum/internal/pkg/logging"
 	"github.com/rumsystem/quorum/internal/pkg/nodectx"
-	quorumpb "github.com/rumsystem/quorum/internal/pkg/pb"
+	quorumpb "github.com/rumsystem/rumchaindata/pkg/pb"
 )
 
 var molautil_log = logging.Logger("util")

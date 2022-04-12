@@ -14,8 +14,8 @@ import (
 	api "github.com/rumsystem/quorum/internal/pkg/api"
 	chain "github.com/rumsystem/quorum/internal/pkg/chain"
 	"github.com/rumsystem/quorum/internal/pkg/logging"
-	quorumpb "github.com/rumsystem/quorum/internal/pkg/pb"
 	pubsubconn "github.com/rumsystem/quorum/internal/pkg/pubsubconn"
+	quorumpb "github.com/rumsystem/rumchaindata/pkg/pb"
 	"google.golang.org/protobuf/encoding/protojson"
 
 	//"google.golang.org/protobuf/proto"

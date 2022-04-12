@@ -5,7 +5,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/rumsystem/quorum/internal/pkg/handlers"
-	quorumpb "github.com/rumsystem/quorum/internal/pkg/pb"
+	quorumpb "github.com/rumsystem/rumchaindata/pkg/pb"
 )
 
 // @Tags Groups

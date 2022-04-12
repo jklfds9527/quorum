@@ -5,8 +5,8 @@ import (
 	guuid "github.com/google/uuid"
 	"github.com/libp2p/go-libp2p-core/network"
 	"github.com/libp2p/go-msgio/protoio"
-	quorumpb "github.com/rumsystem/quorum/internal/pkg/pb"
 	"github.com/rumsystem/quorum/internal/pkg/storage"
+	quorumpb "github.com/rumsystem/rumchaindata/pkg/pb"
 )
 
 type RexRelay struct {

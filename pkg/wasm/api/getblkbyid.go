@@ -10,7 +10,7 @@ import (
 
 	qCrypto "github.com/rumsystem/keystore/pkg/crypto"
 	"github.com/rumsystem/quorum/internal/pkg/chain"
-	"github.com/rumsystem/quorum/internal/pkg/pb"
+	"github.com/rumsystem/rumchaindata/pkg/pb"
 	"google.golang.org/protobuf/proto"
 )
 

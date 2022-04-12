@@ -14,8 +14,8 @@ import (
 	"github.com/rumsystem/quorum/internal/pkg/handlers"
 	"github.com/rumsystem/quorum/internal/pkg/nodectx"
 	"github.com/rumsystem/quorum/internal/pkg/options"
-	quorumpb "github.com/rumsystem/quorum/internal/pkg/pb"
 	"github.com/rumsystem/quorum/testnode"
+	quorumpb "github.com/rumsystem/rumchaindata/pkg/pb"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"

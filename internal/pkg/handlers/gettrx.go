@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/rumsystem/quorum/internal/pkg/chain"
-	"github.com/rumsystem/quorum/internal/pkg/pb"
+	"github.com/rumsystem/rumchaindata/pkg/pb"
 )
 
 func GetTrx(groupid string, trxid string) (*pb.Trx, []int64, error) {

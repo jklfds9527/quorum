@@ -5,7 +5,7 @@ import (
 	"fmt"
 	guuid "github.com/google/uuid"
 	"github.com/rumsystem/quorum/internal/pkg/logging"
-	quorumpb "github.com/rumsystem/quorum/internal/pkg/pb"
+	quorumpb "github.com/rumsystem/rumchaindata/pkg/pb"
 	"google.golang.org/protobuf/proto"
 	"strconv"
 	"strings"

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/rumsystem/quorum/internal/pkg/handlers"
-	quorumpb "github.com/rumsystem/quorum/internal/pkg/pb"
+	quorumpb "github.com/rumsystem/rumchaindata/pkg/pb"
 )
 
 func UpdateProfile(data []byte) (*handlers.UpdateProfileResult, error) {

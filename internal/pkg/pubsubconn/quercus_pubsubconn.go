@@ -9,7 +9,7 @@ import (
 	"github.com/huo-ju/quercus/pkg/quality"
 	iface "github.com/rumsystem/quorum/internal/pkg/chaindataciface"
 	"github.com/rumsystem/quorum/internal/pkg/logging"
-	quorumpb "github.com/rumsystem/quorum/internal/pkg/pb"
+	quorumpb "github.com/rumsystem/rumchaindata/pkg/pb"
 	"google.golang.org/protobuf/proto"
 )
 
