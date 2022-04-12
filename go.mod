@@ -18,7 +18,7 @@ replace github.com/libp2p/go-libp2p => github.com/libp2p/go-libp2p v0.18.0
 //replace github.com/ipfs/go-ds-badger2 => ../go-ds-badger2
 //replace github.com/libp2p/go-libp2p-peerstore => ../go-libp2p-peerstore
 //replace github.com/libp2p/go-libp2p-pubsub => ../go-libp2p-pubsub
-replace github.com/rumsystem/rumchaindata => ../rumchaindata
+//replace github.com/rumsystem/rumchaindata => ../rumchaindata
 
 require (
 	code.rocketnine.space/tslocum/cbind v0.1.5
@@ -57,7 +57,7 @@ require (
 	github.com/otiai10/copy v1.7.0
 	github.com/phayes/freeport v0.0.0-20220201140144-74d24b5ae9f5
 	github.com/rumsystem/keystore v0.0.0-20220411174806-f3f15814a8f5
-	github.com/rumsystem/rumchaindata v0.0.0-20220412162901-e0a1de74b2fd
+	github.com/rumsystem/rumchaindata v0.0.0-20220412221838-4893d521183c
 	github.com/spf13/viper v1.10.1
 	github.com/swaggo/echo-swagger v1.1.0
 	github.com/swaggo/swag v1.7.0

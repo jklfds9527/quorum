@@ -11,10 +11,9 @@ import (
 	rumchaindata "github.com/rumsystem/rumchaindata/pkg/data"
 	quorumpb "github.com/rumsystem/rumchaindata/pkg/pb"
 	"google.golang.org/protobuf/proto"
-
 	//guuid "github.com/google/uuid"
-	p2pcrypto "github.com/libp2p/go-libp2p-core/crypto"
-	localcrypto "github.com/rumsystem/keystore/pkg/crypto"
+	//p2pcrypto "github.com/libp2p/go-libp2p-core/crypto"
+	//localcrypto "github.com/rumsystem/keystore/pkg/crypto"
 )
 
 //const (
@@ -56,41 +55,6 @@ func (factory *TrxFactory) CreateTrx(msgType quorumpb.TrxType, data []byte, encr
 	trx.SenderSign = signature
 
 	return trx, nil
-}
-
-func (factory *TrxFactory) VerifyTrx(trx *quorumpb.Trx) (bool, error) {
-	//clone trxMsg to verify
-	clonetrxmsg := &quorumpb.Trx{
-		TrxId:        trx.TrxId,
-		Type:         trx.Type,
-		GroupId:      trx.GroupId,
-		SenderPubkey: trx.SenderPubkey,
-		Nonce:        trx.Nonce,
-		Data:         trx.Data,
-		TimeStamp:    trx.TimeStamp,
-		Version:      trx.Version,
-		Expired:      trx.Expired}
-
-	bytes, err := proto.Marshal(clonetrxmsg)
-	if err != nil {
-		return false, err
-	}
-
-	hashed := localcrypto.Hash(bytes)
-
-	//create pubkey
-	serializedpub, err := p2pcrypto.ConfigDecodeKey(trx.SenderPubkey)
-	if err != nil {
-		return false, err
-	}
-
-	pubkey, err := p2pcrypto.UnmarshalPublicKey(serializedpub)
-	if err != nil {
-		return false, err
-	}
-
-	verify, err := pubkey.Verify(hashed, trx.SenderSign)
-	return verify, err
 }
 
 func (factory *TrxFactory) GetUpdAppConfigTrx(item *quorumpb.AppConfigItem) (*quorumpb.Trx, error) {
